@@ -1,16 +1,33 @@
-# movie_app
+# Movie App 🎬
 
-A new Flutter project.
+A Flutter app that displays movies using TMDB API.
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+This is a Flutter application that fetches and displays movies from The Movie Database (TMDB) API. It shows details like the now-playing, popular, and top-rated movies with features such as pagination, loading indicators, and beautiful UI elements.
 
-A few resources to get you started if this is your first Flutter project:
+## Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Displays now-playing, popular, and top-rated movies**
+- **Integration with TMDB API for movie data**
+- **State management using `flutter_bloc`**
+- **Beautiful and responsive UI design**
+- **Navigation with `go_router`**
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tech Stack
+
+- **Flutter** - A framework for building natively compiled applications for mobile, web, and desktop from a single codebase.
+- **flutter_bloc** - For state management with BLoC pattern.
+- **Dio** - A powerful HTTP client for making API requests.
+- **flutter_dotenv** - To load environment variables like API keys.
+- **go_router** - For declarative routing in the app.
+
+
+## Setup
+
+To get started with this project, follow these steps:
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/movie_app.git
