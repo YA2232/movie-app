@@ -3,7 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/common/widgets/appbar/basic_app_bar.dart';
+import 'package:movie_app/common/widgets/theme_switcher/theme_switcher.dart';
 import 'package:movie_app/core/config/assets/vectors/app_vectors.dart';
+import 'package:movie_app/core/config/theme/app_color.dart';
+import 'package:movie_app/core/extensions/extensions.dart';
 import 'package:movie_app/presentation/home/widgets/now_playing_movie_widget.dart';
 import 'package:movie_app/presentation/home/widgets/popular_movie_widget.dart';
 import 'package:movie_app/presentation/home/widgets/category_text.dart';
@@ -50,17 +53,35 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppbar(
-        centerTitle: true,
-        title: SvgPicture.asset(
-          AppVectors.logo,
-          width: 100,
+        centerTitle: false,
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: SvgPicture.asset(
+            AppVectors.logo,
+            width: 100,
+          ),
         ),
-        action: IconButton(
-          onPressed: () {
-            context.push("/search");
-          },
-          icon: const Icon(Icons.search),
-        ),
+        actions: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+                color: context.isDarkMode
+                    ? AppColor.secondaryBackGround
+                    : Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(20)),
+            child: IconButton(
+              onPressed: () {
+                context.push("/search");
+              },
+              icon: const Icon(Icons.search),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          ThemeSwitcher()
+        ],
         hideBack: true,
       ),
       body: Column(

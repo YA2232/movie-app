@@ -4,7 +4,7 @@ import 'package:movie_app/core/extensions/extensions.dart';
 
 class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
-  final Widget? action;
+  final List<Widget>? actions;
   final Color? backgroundColor;
   final bool hideBack;
   final bool centerTitle;
@@ -13,7 +13,7 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
       {this.title,
       this.hideBack = false,
       this.centerTitle = false,
-      this.action,
+      this.actions,
       this.backgroundColor,
       this.height,
       super.key});
@@ -28,7 +28,7 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: height ?? 80,
       title: title ?? const Text(''),
       titleSpacing: 0,
-      actions: [action ?? Container()],
+      actions: actions ?? [Container()],
       leading: hideBack
           ? null
           : IconButton(
@@ -51,5 +51,5 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(height ?? 80);
+  Size get preferredSize => Size.fromHeight(height ?? 70);
 }
