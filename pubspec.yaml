@@ -57,7 +57,8 @@ dependencies:
   shared_preferences: ^2.5.3
 
 flutter_native_splash:
-  color: "#000000"  
+  color: "#ffffff" 
+  color_dark: "#121212"
   image: assets/images/netflix.png
   android: true  
   ios: true  

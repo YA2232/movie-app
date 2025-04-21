@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeMode = context.watch<ThemeCubit>().state;
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       darkTheme: AppTheme.darkTheme,

@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:movie_app/common/widgets/custom_transition/custom_transition.dart';
 import 'package:movie_app/domain/movies/entities/movie_entity.dart';
 import 'package:movie_app/presentation/home/pages/home_page.dart';
 import 'package:movie_app/presentation/search/pages/search_page.dart';
@@ -13,15 +14,15 @@ class AppRouter {
       ),
       GoRoute(
         path: "/search",
-        builder: (context, state) => SearchPage(),
+        pageBuilder: (context, state) =>
+            CustomTransition.customTransitionPage(SearchPage()),
       ),
       GoRoute(
           path: '/watch_page',
-          builder: (context, state) {
+          pageBuilder: (context, state) {
             final param = state.extra as MovieEntity;
-            return WatchPage(
-              movieEntity: param,
-            );
+            return CustomTransition.customTransitionPage(
+                WatchPage(movieEntity: param));
           }),
     ],
   );
