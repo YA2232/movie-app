@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/config/theme/app_color.dart';
+import 'package:movie_app/core/extensions/extensions.dart';
 
 class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
@@ -37,8 +38,10 @@ class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
               icon: Container(
                 height: 50,
                 width: 50,
-                decoration: const BoxDecoration(
-                    color: AppColor.secondaryBackGround,
+                decoration: BoxDecoration(
+                    color: context.isDarkMode
+                        ? AppColor.secondaryBackGround
+                        : Colors.grey,
                     shape: BoxShape.circle),
                 child: const Icon(Icons.arrow_back_ios_new,
                     size: 15, color: Colors.white),

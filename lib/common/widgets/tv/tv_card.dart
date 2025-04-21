@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/config/assets/images/app_images.dart';
 import 'package:movie_app/core/config/theme/app_color.dart';
+import 'package:movie_app/core/extensions/extensions.dart';
 import 'package:movie_app/domain/tv/entity/tv_entity.dart';
 
 class TvCard extends StatelessWidget {
@@ -14,7 +15,9 @@ class TvCard extends StatelessWidget {
       child: Container(
         width: 180,
         decoration: BoxDecoration(
-            color: AppColor.secondaryBackGround,
+            color: context.isDarkMode
+                ? AppColor.secondaryBackGround
+                : Colors.grey.shade300,
             borderRadius: BorderRadius.circular(8)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

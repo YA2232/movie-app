@@ -7,7 +7,7 @@ class CategoryText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 15),
+      padding: const EdgeInsets.only(top: 18, left: 15),
       child: Text(
         text,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),

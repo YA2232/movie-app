@@ -2,7 +2,6 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_app/domain/movies/entities/movie_entity.dart';
 import 'package:movie_app/presentation/home/pages/home_page.dart';
 import 'package:movie_app/presentation/search/pages/search_page.dart';
-import 'package:movie_app/presentation/splash/pages/splash_page.dart';
 import 'package:movie_app/presentation/watch_page_movie/pages/watch_page_movie.dart';
 
 class AppRouter {
@@ -10,10 +9,6 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const SplashPage(),
-      ),
-      GoRoute(
-        path: '/home',
         builder: (context, state) => HomePage(),
       ),
       GoRoute(

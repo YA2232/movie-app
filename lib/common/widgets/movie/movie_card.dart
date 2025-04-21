@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/core/config/assets/images/app_images.dart';
 import 'package:movie_app/core/config/theme/app_color.dart';
+import 'package:movie_app/core/extensions/extensions.dart';
 import 'package:movie_app/domain/movies/entities/movie_entity.dart';
 
 class MovieCard extends StatelessWidget {
@@ -17,7 +18,9 @@ class MovieCard extends StatelessWidget {
       child: Container(
         width: 180,
         decoration: BoxDecoration(
-            color: AppColor.secondaryBackGround,
+            color: context.isDarkMode
+                ? AppColor.secondaryBackGround
+                : Colors.grey.shade300,
             borderRadius: BorderRadius.circular(8)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
