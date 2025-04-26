@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:cached_network_image/cached_network_image.dart'; // استيراد المكتبة
 import 'package:movie_app/core/config/assets/images/app_images.dart';
 import 'package:movie_app/core/config/theme/app_color.dart';
 import 'package:movie_app/core/extensions/extensions.dart';
@@ -13,31 +14,43 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push("/watch_page", extra: movieEntity);
+        context.push("/watch_page",
+            extra:
+                movieEntity); // الانتقال لصفحة المشاهدة مع تمرير الـ movieEntity
       },
       child: Container(
         width: 180,
         decoration: BoxDecoration(
-            color: context.isDarkMode
-                ? AppColor.secondaryBackGround
-                : Colors.grey.shade300,
-            borderRadius: BorderRadius.circular(8)),
+          color: context.isDarkMode
+              ? AppColor.secondaryBackGround
+              : Colors.grey.shade300,
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               flex: 4,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(AppImages.movieImagesBasePath +
-                            movieEntity.posterPath)),
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(8),
-                        topRight: Radius.circular(8))),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
+                ),
+                child: CachedNetworkImage(
+                  width: double.infinity,
+                  imageUrl:
+                      AppImages.movieImagesBasePath + movieEntity.posterPath,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Container(
+                    color: Colors.grey.shade300,
+                    child: const Center(child: CircularProgressIndicator()),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    color: Colors.grey,
+                    child: const Icon(Icons.error, color: Colors.red),
+                  ),
+                ),
               ),
             ),
             Expanded(
@@ -50,9 +63,10 @@ class MovieCard extends StatelessWidget {
                     Text(
                       movieEntity.title,
                       style: const TextStyle(
-                          fontSize: 12,
-                          overflow: TextOverflow.ellipsis,
-                          fontWeight: FontWeight.bold),
+                        fontSize: 12,
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,

@@ -4,6 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/common/widgets/appbar/basic_app_bar.dart';
 import 'package:movie_app/common/widgets/theme_switcher/theme_switcher.dart';
+import 'package:movie_app/core/config/assets/images/app_images.dart';
 import 'package:movie_app/core/config/assets/vectors/app_vectors.dart';
 import 'package:movie_app/core/config/theme/app_color.dart';
 import 'package:movie_app/core/extensions/extensions.dart';
@@ -27,27 +28,27 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    showStartAds();
+    // showStartAds();
   }
 
   @override
   void dispose() {
-    _bannerAd?.dispose();
+    // _bannerAd?.dispose();
     super.dispose();
   }
 
-  void showStartAds() {
-    startAppSdk.setTestAdsEnabled(true);
-    startAppSdk.loadBannerAd(StartAppBannerType.BANNER).then((bannerAd) {
-      setState(() {
-        this.bannerAd = bannerAd;
-      });
-    }).onError<StartAppException>((ex, stackTrace) {
-      debugPrint("Error loading Banner ad: ${ex.message}");
-    }).onError((error, stackTrace) {
-      debugPrint("Error loading Banner ad: $error");
-    });
-  }
+  // void showStartAds() {
+  //   startAppSdk.setTestAdsEnabled(true);
+  //   startAppSdk.loadBannerAd(StartAppBannerType.BANNER).then((bannerAd) {
+  //     setState(() {
+  //       this.bannerAd = bannerAd;
+  //     });
+  //   }).onError<StartAppException>((ex, stackTrace) {
+  //     debugPrint("Error loading Banner ad: ${ex.message}");
+  //   }).onError((error, stackTrace) {
+  //     debugPrint("Error loading Banner ad: $error");
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +57,9 @@ class _HomePageState extends State<HomePage> {
         centerTitle: false,
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: SvgPicture.asset(
-            AppVectors.logo,
-            width: 100,
+          child: Image.asset(
+            AppImages.iconImage,
+            width: 50,
           ),
         ),
         actions: [

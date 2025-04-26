@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/config/assets/images/app_images.dart';
 import 'package:movie_app/core/config/theme/app_color.dart';
@@ -15,26 +16,35 @@ class TvCard extends StatelessWidget {
       child: Container(
         width: 180,
         decoration: BoxDecoration(
-            color: context.isDarkMode
-                ? AppColor.secondaryBackGround
-                : Colors.grey.shade300,
-            borderRadius: BorderRadius.circular(8)),
+          color: context.isDarkMode
+              ? AppColor.secondaryBackGround
+              : Colors.grey.shade300,
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               flex: 4,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(AppImages.movieImagesBasePath +
-                            tvEntity.posterPath)),
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(8),
-                        topRight: Radius.circular(8))),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
+                ),
+                child: CachedNetworkImage(
+                  width: double.infinity,
+                  imageUrl: AppImages.movieImagesBasePath + tvEntity.posterPath,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Container(
+                    color: Colors.grey.shade300,
+                    child: const Center(child: CircularProgressIndicator()),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    color: Colors.grey,
+                    child: const Icon(Icons.error, color: Colors.red),
+                  ),
+                ),
               ),
             ),
             Expanded(
@@ -47,21 +57,20 @@ class TvCard extends StatelessWidget {
                     Text(
                       tvEntity.name,
                       style: const TextStyle(
-                          fontSize: 12,
-                          overflow: TextOverflow.ellipsis,
-                          fontWeight: FontWeight.bold),
+                        fontSize: 12,
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                    const SizedBox(height: 4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(
-                          Icons.star,
-                          size: 16,
-                          color: Colors.amber,
-                        ),
+                        const Icon(Icons.star, size: 16, color: Colors.amber),
+                        const SizedBox(width: 4),
                         Text(
                           tvEntity.voteAverage.toStringAsFixed(1),
-                          style: TextStyle(fontSize: 10),
+                          style: const TextStyle(fontSize: 10),
                         )
                       ],
                     )

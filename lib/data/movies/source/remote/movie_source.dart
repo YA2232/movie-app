@@ -29,6 +29,9 @@ class MovieSourceImpl extends MovieSource {
     try {
       var response = await sl<DioClient>()
           .get(ApiUrl.nowPlaying, queryParameters: {'api_key': ApiUrl.apikey});
+      print("#############################################");
+      print(response);
+      print("#############################################");
       return Right(response.data);
     } on DioException catch (e) {
       return Left(e.response!.data["status_message"]);

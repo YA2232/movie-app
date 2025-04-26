@@ -1,9 +1,12 @@
 import 'package:get_it/get_it.dart';
+import 'package:movie_app/common/helper/database/database_helper.dart';
 import 'package:movie_app/core/network/dio_clinte.dart';
 import 'package:movie_app/data/movies/repo/movire_repo_impl.dart';
-import 'package:movie_app/data/movies/source/movie_source.dart';
+import 'package:movie_app/data/movies/source/local/movie_db.dart';
+import 'package:movie_app/data/movies/source/remote/movie_source.dart';
 import 'package:movie_app/data/tv/repo/tv_repo_impl.dart';
-import 'package:movie_app/data/tv/source/tv_source.dart';
+import 'package:movie_app/data/tv/source/local/tv_db.dart';
+import 'package:movie_app/data/tv/source/remote/tv_source.dart';
 import 'package:movie_app/domain/movies/repo/movie_repo.dart';
 import 'package:movie_app/domain/movies/usecase/movies_usecase.dart';
 import 'package:movie_app/domain/movies/usecase/now_playing_usecase.dart';
@@ -28,4 +31,7 @@ void initDep() {
   sl.registerSingleton<RecommendationsUsecase>(RecommendationsUsecase());
   sl.registerSingleton<SearchMovieUsecase>(SearchMovieUsecase());
   sl.registerSingleton<SearchTvUsecase>(SearchTvUsecase());
+  sl.registerSingleton<DatabaseHelper>(DatabaseHelper());
+  sl.registerSingleton<MovieDb>(MovieDbImpl());
+  sl.registerSingleton<TvDb>(TvDbImpl());
 }

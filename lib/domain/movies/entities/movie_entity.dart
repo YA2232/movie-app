@@ -6,7 +6,6 @@ class MovieEntity {
   final String backdropPath;
   final double voteAverage;
   final String releaseDate;
-  final bool adult;
 
   MovieEntity({
     required this.id,
@@ -16,6 +15,5 @@ class MovieEntity {
     required this.backdropPath,
     required this.voteAverage,
     required this.releaseDate,
-    required this.adult,
   });
 }

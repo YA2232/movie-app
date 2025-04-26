@@ -24,8 +24,22 @@ class TvModel {
       overview: json['overview'] ?? '',
       posterPath: json['poster_path'] ?? '',
       backdropPath: json['backdrop_path'] ?? '',
-      voteAverage: (json['vote_average'] ?? 0).toDouble(),
+      voteAverage: json['vote_average'] is String
+          ? double.tryParse(json['vote_average']) ?? 0.0
+          : (json['vote_average'] ?? 0).toDouble(),
       firstAirDate: json['first_air_date'] ?? '',
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'overview': overview,
+      'poster_path': posterPath,
+      'backdrop_path': backdropPath,
+      'vote_average': voteAverage,
+      'first_air_date': firstAirDate,
+    };
   }
 }
